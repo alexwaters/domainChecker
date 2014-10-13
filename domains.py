@@ -1,40 +1,45 @@
 with open ("domainDict", "r") as theFile:
     wordList=theFile.read().replace('\n', '')
 
-godaddyBulkLim = 500
+listLen = len(wordList)
+gdBulkLim = 500
 wordSize = 3
-numChunks = (len(wordList) / godaddyBulkLim) + 1
+words = listLen / wordSize
+numChunks = (words / gdBulkLim) + 1
 chunks = []
+domExt = ".nyc"
+counter = 0
 
 class Chunk:
+    offset = 0
     contents = []
-    length = len(contents)
     pass
 
 def chunkIt(offset):
     tempList = []
-    a = 0
-    b = 0
-    offset = offset*godaddyBulkLim
+    a,b = 0,0
+    off = offset*gdBulkLim*wordSize
     
-    while a < len(wordList) and b < godaddyBulkLim:
-        start,fin = (a+offset),(a+offset+wordSize)
+    while a < len(wordList) and b < gdBulkLim:
+        start,fin = (a+off),(a+off+wordSize)
+        
         word = wordList[start:fin]
         if len(word) == wordSize:
-            tempList.append(word)
-        a+=3
+            tempList.append(str(word) + domExt)
+        a+=wordSize
         b+=1
-    print "asdas: " + str(tempList)
+    print ("Chunk " + str(offset + 1) + " (Len:" + str(len(tempList)) + "): "
+    + str(tempList))
     return tempList
 
-z=0
-while numChunks > z:
+while numChunks > counter:
     chunk = Chunk()
-    chunk.contents = chunkIt(z)
+    chunk.offset = counter
+    chunk.contents = chunkIt(counter)
     chunks.append(chunk.contents)
-    z+=1
+    counter+=1
+counter = 0
 
-print "Total Length: " + str(len(wordList))
-print "numChunks: " + str(numChunks)
-print "Chunks Length: " + str(len(chunks))
-print str(chunks)
+print "Total Dictionary Length: " + str(listLen)
+print "Number of words: " + str(words)
+print "Number of Chunks: " + str(numChunks)
