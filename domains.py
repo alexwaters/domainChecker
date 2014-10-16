@@ -2,12 +2,13 @@ with open ("domainDict", "r") as theFile:
     wordList=theFile.read().replace('\n', '')
 
 listLen = len(wordList)
-gdBulkLim = 500
+gdBulkLim = 230
 wordSize = 3
 words = listLen / wordSize
 numChunks = (words / gdBulkLim) + 1
 chunks = []
-domExt = ".nyc"
+#domExt = ".nyc"
+domExt = ""
 counter = 0
 
 class Chunk:
@@ -40,6 +41,13 @@ while numChunks > counter:
     counter+=1
 counter = 0
 
-print "Total Dictionary Length: " + str(listLen)
+print "\nTotal Dictionary Length: " + str(listLen)
 print "Number of words: " + str(words)
 print "Number of Chunks: " + str(numChunks)
+
+while numChunks > counter:
+    with open('chunked'+str(counter)+'.txt', 'w') as the_file:
+        for word in chunks[counter]:
+            the_file.write(str(word)+'\n')
+    counter+=1
+counter = 0
