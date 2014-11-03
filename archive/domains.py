@@ -2,6 +2,11 @@
 files of fixed length. The files contain words which can easily be copied
 and pasted into GoDaddy's bulk domain name checker. This code is deprecated
 and for funny sidelong looks only. These aren't the droids you're looking for.
+
+Although, I did use this silly little script to register about 5 really sweet
+.NYC domains. Thus the inspiration to build out an application was born.
+
+GD's 500 word bulk limit is a lie, it will timeout. 230 worked...
 """
 
 with open ("domainDict", "r") as theFile:
@@ -63,3 +68,6 @@ def printStats():
 chunkIt()
 #makeFiles()
 printStats()
+
+#I know this is ugly, I just wanted a list of the words 
+#one per line in 300-word lists
