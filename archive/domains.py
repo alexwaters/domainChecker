@@ -1,4 +1,4 @@
-""" Running this file with all functions uncommented will result in several
+"""Running this file with all functions uncommented will result in several
 files of fixed length. The files contain words which can easily be copied
 and pasted into GoDaddy's bulk domain name checker. This code is deprecated
 and for funny sidelong looks only. These aren't the droids you're looking for.

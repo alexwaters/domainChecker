@@ -1,0 +1,3 @@
+[submodule "pythonwhois"]
+	path = pythonwhois
+	url = https://github.com/joepie91/python-whois.git
